@@ -1,5 +1,7 @@
 <?php
 
+// Dialler API
+
 add_action( 'wpcf7_before_send_mail', 
 
     function( $contact_form, $abort, $submission ) {
@@ -12,6 +14,11 @@ add_action( 'wpcf7_before_send_mail',
             $last_name = $submission->get_posted_data( 'full-name' );
             $email_address = $submission->get_posted_data( 'email-address');
             $phone_number = $submission->get_posted_data( 'phone-number');
+
+            $utm_campaign = $submission->get_posted_data('utm_campaign');
+            $utm_medium = $submission->get_posted_data('utm_medium');
+            $utm_term = $submission->get_posted_data('utm_term');
+            $utm_content = $submission->get_posted_data('utm_content');
 
             // Login Request
 
@@ -52,19 +59,19 @@ add_action( 'wpcf7_before_send_mail',
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_USERAGENT => $user_agent,
                 CURLOPT_POSTFIELDS =>'{
-                    "first_name": "{{first_name}}",
-                    "last_name": " ' . $last_name . ' ",
-                    "email": " ' . $email_address . ' ",
-                    "date_of_birth": "{{date_of_birth}}",
-                    "main_phone": " ' . $phone_number . ' ",
+                    "first_name": "",
+                    "last_name": "' . $last_name . '",
+                    "email": "' . $email_address . '",
+                    "date_of_birth": "",
+                    "main_phone": "' . $phone_number . '",
                     "phone_code": "44",
                     "data_list": 1020,
                     "custom_fields": {
-                    "utm_source": "{{utm_source}}",
-                    "utm_campaign": "{{utm_campaign}}",
-                    "utm_medium":"{{utm_medium}}",
-                    "utm_term":"{{utm_term}}",
-                    "utm_content":"{{utm_content}}"
+                    "utm_source": "Legmark",
+                    "utm_campaign": "' . $utm_campaign . '",
+                    "utm_medium": "' . $utm_medium . '",
+                    "utm_term": "' . $utm_term . '",
+                    "utm_content": "' . $utm_content . '"
                     },
                     "auto_queue":true,
                     "queue_priority":99,
