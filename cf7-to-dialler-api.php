@@ -26,7 +26,7 @@ add_action( 'wpcf7_before_send_mail',
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array('username' => 'PinpointCallSolutions','password' => '0329999999vn78vnvnvnvnnvbnvbm'),
+                CURLOPT_POSTFIELDS => array('username' => '...','password' => '...'),
             ));
 
             $response_login = curl_exec($curl_login);
